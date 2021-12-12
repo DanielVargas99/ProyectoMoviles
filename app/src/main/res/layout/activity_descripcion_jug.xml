@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".descripcionJug"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/datos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Datos jugador"
+        android:textSize="50dp"
+        android:textAlignment="center"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/datos">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imagenJugador"
+                android:layout_width="120dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/nom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="20dp"
+                    android:text="Nombre: "
+                    android:textColor="@color/black"
+                    android:background="@color/azulito" />
+
+                <TextView
+                    android:id="@+id/campoNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/nom"
+                    android:textColor="@color/black"
+                    android:background="@color/azulito" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/ed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Edad: "
+                    android:textColor="@color/black"
+                    android:background="@color/azulito" />
+
+                <TextView
+                    android:id="@+id/campoEdad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/ed"
+                    android:textColor="@color/black"
+                    android:background="@color/azulito"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/posicionJug"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Posicion: "
+                    android:textColor="@color/black"
+                    android:background="@color/azulito" />
+
+                <TextView
+                    android:id="@+id/pos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/posicionJug"
+                    android:textColor="@color/black"
+                    android:background="@color/azulito"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/alturaJug"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Altura: "
+                    android:textColor="@color/black"
+                    android:background="@color/azulito" />
+
+                <TextView
+                    android:id="@+id/alt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/alturaJug"
+                    android:textColor="@color/black"
+                    android:background="@color/azulito"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/pesoJug"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Peso: "
+                    android:textColor="@color/black"
+                    android:background="@color/azulito" />
+
+                <TextView
+                    android:id="@+id/peso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/pesoJug"
+                    android:textColor="@color/black"
+                    android:background="@color/azulito"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/ultimoEq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Ultimo equipo: "
+                    android:textColor="@color/black"
+                    android:background="@color/azulito" />
+
+                <TextView
+                    android:id="@+id/ultimo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/ultimoEq"
+                    android:textColor="@color/black"
+                    android:background="@color/azulito"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/nroEq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Numero equipos: "
+                    android:textColor="@color/black"
+                    android:background="@color/azulito" />
+
+                <TextView
+                    android:id="@+id/numeroEq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/nroEq"
+                    android:textColor="@color/black"
+                    android:background="@color/azulito"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/nroPartidos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Numero partidos: "
+                    android:textColor="@color/black"
+                    android:background="@color/azulito" />
+
+                <TextView
+                    android:id="@+id/nroPt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/nroPartidos"
+                    android:textColor="@color/black"
+                    android:background="@color/azulito"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/nroTitulos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Numero titulos: "
+                    android:textColor="@color/black"
+                    android:background="@color/azulito" />
+
+                <TextView
+                    android:id="@+id/nroTit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/nroTitulos"
+                    android:textColor="@color/black"
+                    android:background="@color/azulito"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/telefono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Telefono de contacto: "
+                    android:textColor="@color/black"
+                    android:background="@color/azulito" />
+
+                <TextView
+                    android:id="@+id/tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/telefono"
+                    android:textColor="@color/black"
+                    android:background="@color/azulito"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/correoJug"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Correo de contacto: "
+                    android:textColor="@color/black"
+                    android:background="@color/azulito" />
+
+                <TextView
+                    android:id="@+id/emailJug"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/correoJug"
+                    android:textColor="@color/black"
+                    android:background="@color/azulito"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

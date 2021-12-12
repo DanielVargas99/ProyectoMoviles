@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".tipoRegistro"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/registroJugador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/fondojugador">
+
+            <TextView
+                android:id="@+id/p1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Registrarse"
+                android:textSize="35dp"
+                android:textColor="@color/black"
+                android:paddingLeft="5dp"/>
+
+            <TextView
+                android:id="@+id/p2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="como"
+                android:textSize="35dp"
+                android:layout_below="@id/p1"
+                android:textColor="@color/black"
+                android:paddingLeft="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="jugador"
+                android:textSize="35dp"
+                android:layout_below="@id/p2"
+                android:textColor="@color/black"
+                android:paddingLeft="5dp"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/registroEntrenador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/fondoentrenador">
+
+            <TextView
+                android:id="@+id/p3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Registrarse"
+                android:textSize="35dp"
+                android:textColor="@color/white"
+                android:paddingLeft="5dp"/>
+
+            <TextView
+                android:id="@+id/p4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="como"
+                android:textSize="35dp"
+                android:layout_below="@id/p3"
+                android:textColor="@color/white"
+                android:paddingLeft="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="entrenador"
+                android:textSize="35dp"
+                android:layout_below="@id/p4"
+                android:textColor="@color/white"
+                android:paddingLeft="5dp"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

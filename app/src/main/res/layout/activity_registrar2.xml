@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".registrar4"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Informacion de cuenta"
+        android:textSize="25dp"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"/>
+
+    <ImageView
+        android:id="@+id/cargarFoto"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"/>
+
+    <Button
+        android:id="@+id/subirFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/black"
+        android:text="Subir foto"/>
+
+    <EditText
+        android:id="@+id/campo1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="Correo electronico"/>
+
+    <EditText
+        android:id="@+id/campo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="Contraseña"/>
+
+    <EditText
+        android:id="@+id/campo3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="Confirmar contraseña"/>
+
+    <Button
+        android:id="@+id/botonFin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="Finalizar"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"/>
+
+    <ProgressBar
+        android:id="@+id/barra"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp" />
+
+</LinearLayout>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".editarPerfil"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/perfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PERFIL"
+        android:textSize="50dp"
+        android:textAlignment="center"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/boton_navegacion"
+        android:layout_below="@id/perfil">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imagen"
+                android:layout_width="120dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:text="    Nombre    "
+                android:textColor="@color/black"
+                android:background="@color/azulito" />
+
+            <TextView
+                android:id="@+id/campoNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:background="@color/azulito" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:text="    Edad    "
+                android:textColor="@color/black"
+                android:background="@color/azulito" />
+
+            <TextView
+                android:id="@+id/campoEdad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:background="@color/azulito"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:text="    Posicion    "
+                android:textColor="@color/black"
+                android:background="@color/azulito" />
+
+            <TextView
+                android:id="@+id/campoPosicion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:background="@color/azulito"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:text="    Ultimo equipo    "
+                android:textColor="@color/black"
+                android:background="@color/azulito" />
+
+            <TextView
+                android:id="@+id/campoEquipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:background="@color/azulito"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:text="    Telefono    "
+                android:textColor="@color/black"
+                android:background="@color/azulito" />
+
+            <TextView
+                android:id="@+id/campoTelefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:background="@color/azulito"/>
+
+            <Button
+                android:id="@+id/editar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:text="Editar perfil"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"/>
+
+            <Button
+                android:id="@+id/cerrarSesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:text="Cerrar Sesion"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/boton_navegacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemBackground="@color/azulito"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/menu_navegar"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
