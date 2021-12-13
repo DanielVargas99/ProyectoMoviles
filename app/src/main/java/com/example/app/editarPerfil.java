@@ -82,6 +82,23 @@ public class editarPerfil extends AppCompatActivity {
             }
         });
 
+        menuJugador.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.perfil:
+                        return true;
+                    case R.id.principal:
+                        Intent intent = new Intent(getApplicationContext(), Home.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
         editar = findViewById(R.id.editar);
         editar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,23 +146,6 @@ public class editarPerfil extends AppCompatActivity {
 
                     }
                 });
-            }
-        });
-
-        menuJugador.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.perfil:
-                        return true;
-                    case R.id.principal:
-                        Intent intent = new Intent(getApplicationContext(), Home.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
             }
         });
 

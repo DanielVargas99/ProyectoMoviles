@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 public class registroEntrenador2 extends AppCompatActivity {
 
@@ -24,6 +25,7 @@ public class registroEntrenador2 extends AppCompatActivity {
     EditText c1;
     EditText c2;
     Button siguiente;
+    ProgressBar barra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,9 @@ public class registroEntrenador2 extends AppCompatActivity {
         c2.setVisibility(View.INVISIBLE);
         int3 = findViewById(R.id.campo5);
         int3.setHint("Posicion de interes 3");
+
+        barra = findViewById(R.id.barra);
+        barra.setProgress(50);
 
         nombre = getIntent().getStringExtra("nombre");
         edad = getIntent().getStringExtra("edad");

@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class     listAdapter extends RecyclerView.Adapter<listAdapter.ViewHolder> {
+public class listAdapter extends RecyclerView.Adapter<listAdapter.ViewHolder> {
 
     private List<listaCartas> cartas;
     private LayoutInflater inflater;

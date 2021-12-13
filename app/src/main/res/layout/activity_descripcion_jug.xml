@@ -12,8 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Datos jugador"
-        android:textSize="50dp"
-        android:textAlignment="center"/>
+        android:padding="10dp"
+        android:background="@color/principal"
+        android:fontFamily="@font/dangrek_regular"
+        android:textAlignment="gravity"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,8 +32,9 @@
             <ImageView
                 android:id="@+id/imagenJugador"
                 android:layout_width="120dp"
-                android:layout_height="140dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="30dp"
+                android:background="@drawable/ic_account_circle"
                 android:layout_gravity="center_horizontal"/>
 
             <RelativeLayout
@@ -42,19 +47,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:textSize="20dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/secular_regular"
                     android:text="Nombre: "
                     android:textColor="@color/black"
-                    android:background="@color/azulito" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/campoNombre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
                     android:layout_toRightOf="@id/nom"
+                    android:background="@color/white"
                     android:textColor="@color/black"
-                    android:background="@color/azulito" />
+                    android:textSize="20dp" />
 
             </RelativeLayout>
 
@@ -67,11 +73,12 @@
                     android:id="@+id/ed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
                     android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/secular_regular"
                     android:text="Edad: "
                     android:textColor="@color/black"
-                    android:background="@color/azulito" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/campoEdad"
@@ -80,7 +87,7 @@
                     android:textSize="20dp"
                     android:layout_toRightOf="@id/ed"
                     android:textColor="@color/black"
-                    android:background="@color/azulito"/>
+                    android:background="@color/white"/>
 
             </RelativeLayout>
 
@@ -93,11 +100,12 @@
                     android:id="@+id/posicionJug"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
                     android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/secular_regular"
                     android:text="Posicion: "
                     android:textColor="@color/black"
-                    android:background="@color/azulito" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/pos"
@@ -106,7 +114,7 @@
                     android:textSize="20dp"
                     android:layout_toRightOf="@id/posicionJug"
                     android:textColor="@color/black"
-                    android:background="@color/azulito"/>
+                    android:background="@color/white"/>
 
             </RelativeLayout>
 
@@ -119,11 +127,12 @@
                     android:id="@+id/alturaJug"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
                     android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/secular_regular"
                     android:text="Altura: "
                     android:textColor="@color/black"
-                    android:background="@color/azulito" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/alt"
@@ -132,7 +141,7 @@
                     android:textSize="20dp"
                     android:layout_toRightOf="@id/alturaJug"
                     android:textColor="@color/black"
-                    android:background="@color/azulito"/>
+                    android:background="@color/white"/>
 
             </RelativeLayout>
 
@@ -145,11 +154,12 @@
                     android:id="@+id/pesoJug"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
                     android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/secular_regular"
                     android:text="Peso: "
                     android:textColor="@color/black"
-                    android:background="@color/azulito" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/peso"
@@ -158,7 +168,7 @@
                     android:textSize="20dp"
                     android:layout_toRightOf="@id/pesoJug"
                     android:textColor="@color/black"
-                    android:background="@color/azulito"/>
+                    android:background="@color/white"/>
 
             </RelativeLayout>
 
@@ -171,11 +181,12 @@
                     android:id="@+id/ultimoEq"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
                     android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/secular_regular"
                     android:text="Ultimo equipo: "
                     android:textColor="@color/black"
-                    android:background="@color/azulito" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/ultimo"
@@ -184,7 +195,7 @@
                     android:textSize="20dp"
                     android:layout_toRightOf="@id/ultimoEq"
                     android:textColor="@color/black"
-                    android:background="@color/azulito"/>
+                    android:background="@color/white"/>
 
             </RelativeLayout>
 
@@ -197,11 +208,12 @@
                     android:id="@+id/nroEq"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
                     android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/secular_regular"
                     android:text="Numero equipos: "
                     android:textColor="@color/black"
-                    android:background="@color/azulito" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/numeroEq"
@@ -210,7 +222,7 @@
                     android:textSize="20dp"
                     android:layout_toRightOf="@id/nroEq"
                     android:textColor="@color/black"
-                    android:background="@color/azulito"/>
+                    android:background="@color/white"/>
 
             </RelativeLayout>
 
@@ -223,11 +235,12 @@
                     android:id="@+id/nroPartidos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
                     android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/secular_regular"
                     android:text="Numero partidos: "
                     android:textColor="@color/black"
-                    android:background="@color/azulito" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/nroPt"
@@ -236,7 +249,7 @@
                     android:textSize="20dp"
                     android:layout_toRightOf="@id/nroPartidos"
                     android:textColor="@color/black"
-                    android:background="@color/azulito"/>
+                    android:background="@color/white"/>
 
             </RelativeLayout>
 
@@ -249,11 +262,12 @@
                     android:id="@+id/nroTitulos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
                     android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/secular_regular"
                     android:text="Numero titulos: "
                     android:textColor="@color/black"
-                    android:background="@color/azulito" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/nroTit"
@@ -262,7 +276,7 @@
                     android:textSize="20dp"
                     android:layout_toRightOf="@id/nroTitulos"
                     android:textColor="@color/black"
-                    android:background="@color/azulito"/>
+                    android:background="@color/white"/>
 
             </RelativeLayout>
 
@@ -275,11 +289,12 @@
                     android:id="@+id/telefono"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
                     android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/secular_regular"
                     android:text="Telefono de contacto: "
                     android:textColor="@color/black"
-                    android:background="@color/azulito" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/tel"
@@ -288,7 +303,7 @@
                     android:textSize="20dp"
                     android:layout_toRightOf="@id/telefono"
                     android:textColor="@color/black"
-                    android:background="@color/azulito"/>
+                    android:background="@color/white"/>
 
             </RelativeLayout>
 
@@ -301,11 +316,12 @@
                     android:id="@+id/correoJug"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
                     android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/secular_regular"
                     android:text="Correo de contacto: "
                     android:textColor="@color/black"
-                    android:background="@color/azulito" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/emailJug"
@@ -314,7 +330,7 @@
                     android:textSize="20dp"
                     android:layout_toRightOf="@id/correoJug"
                     android:textColor="@color/black"
-                    android:background="@color/azulito"/>
+                    android:background="@color/white"/>
 
             </RelativeLayout>
 
