@@ -47,10 +47,6 @@ public class HomeEntrenador extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.recomendado:
-                        Intent intent = new Intent(getApplicationContext(), recomendados_entrenador.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        overridePendingTransition(0,0);
                         return true;
                     case R.id.perfil:
                         Intent intent2 = new Intent(getApplicationContext(), editarPerfilEntrenador.class);

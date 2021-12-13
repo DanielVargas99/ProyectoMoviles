@@ -8,7 +8,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,55 +32,147 @@ import java.util.Map;
 
 public class registroEntrenador2 extends AppCompatActivity {
 
-    String interes1;
-    String interes2;
-    String interes3;
+    ImageView fotoEnt;
     String nombre;
     String edad;
-    String equipo;
+    String equipoActual;
     String añosActivo;
     String telefono;
-    EditText int1;
-    EditText int2;
-    EditText int3;
-    Button siguiente;
+    String correo;
+    String contraseña;
+    String recontraseña;
+    EditText email;
+    EditText password;
+    EditText repassword;
+    ProgressBar barra;
+    Button boton;
+    Button foto;
+    FirebaseAuth auth;
+    DatabaseReference databaseReference;
+    DatabaseReference entrenadorRef;
+    StorageReference storageReference;
+    StorageReference carpetaFotos;
+    StorageReference fotosJugadores;
+    ProgressDialog progressDialog;
+    private static final int galeria = 1;
+    Uri uri;
+    Uri descargarUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar2);
 
-        int1 = findViewById(R.id.campo1);
-        int1.setHint("Posicion de interes 1");
-        int2 = findViewById(R.id.campo3);
-        int2.setHint("Posicion de interes 2");
-        int3 = findViewById(R.id.campo5);
-        int3.setHint("Posicion de interes 3");
+        progressDialog = new ProgressDialog(this);
+
+        auth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        entrenadorRef = databaseReference.child("entrenador");
+
+        email = findViewById(R.id.campo1);
+        password = findViewById(R.id.campo2);
+        repassword = findViewById(R.id.campo3);
+
+        barra = findViewById(R.id.barra);
+        barra.setProgress(100);
 
         nombre = getIntent().getStringExtra("nombre");
         edad = getIntent().getStringExtra("edad");
-        equipo = getIntent().getStringExtra("equipo");
+        equipoActual = getIntent().getStringExtra("equipo");
         añosActivo = getIntent().getStringExtra("activo");
         telefono = getIntent().getStringExtra("telefono");
 
-        siguiente = findViewById(R.id.boton);
-        siguiente.setOnClickListener(new View.OnClickListener() {
+        storageReference = FirebaseStorage.getInstance().getReference();
+        fotoEnt = findViewById(R.id.cargarFoto);
+
+        foto = findViewById(R.id.subirFoto);
+        foto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                interes1 = int1.getText().toString();
-                interes2 = int2.getText().toString();
-                interes3 = int3.getText().toString();
-                Intent intent = new Intent(getApplicationContext(), registroEntrenador3.class);
-                intent.putExtra("nombre", nombre);
-                intent.putExtra("edad", edad);
-                intent.putExtra("equipo", equipo);
-                intent.putExtra("activo", añosActivo);
-                intent.putExtra("telefono", telefono);
-                intent.putExtra("int1", interes1);
-                intent.putExtra("int2", interes2);
-                intent.putExtra("int3", interes3);
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, galeria);
+            }
+        });
+
+        boton = findViewById(R.id.botonFin);
+        boton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                correo = email.getText().toString();
+                contraseña = password.getText().toString();
+                recontraseña = repassword.getText().toString();
+                crearInicioSesion(correo, contraseña);
+                Intent intent = new Intent(getApplicationContext(), HomeEntrenador.class);
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == galeria && resultCode == RESULT_OK){
+
+            uri = data.getData();
+            fotoEnt.setImageURI(uri);
+
+            carpetaFotos = storageReference.child("fotosJugador").child(uri.getLastPathSegment());
+            carpetaFotos.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+
+                    while (!uriTask.isSuccessful());
+
+                    descargarUri = uriTask.getResult();
+                }
+            });
+        }
+    }
+
+    public void crearInicioSesion(String correo, String contraseña){
+        auth.createUserWithEmailAndPassword(correo, contraseña).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(getApplicationContext(), "USUARIO CREADO", Toast.LENGTH_SHORT).show();
+                    FirebaseUser user = auth.getCurrentUser();
+                    iniciarSesion(user, correo, contraseña);
+                } else {
+                    Toast.makeText(getApplicationContext(), "USUARIO NO CREADO", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public void iniciarSesion(FirebaseUser usuario, String correo, String contraseña){
+        auth.signInWithEmailAndPassword(correo, contraseña).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    registrarEntrenador(entrenadorRef, usuario, correo, contraseña);
+                }
+            }
+        });
+    }
+
+    public void registrarEntrenador(DatabaseReference tablaRef, FirebaseUser usuario, String correo, String contraseña){
+
+
+        Map<String, String> entrenadores = new HashMap<>();
+
+        entrenadores.put("nombre", nombre);
+        entrenadores.put("edad", edad);
+        entrenadores.put("equipoActual", equipoActual);
+        entrenadores.put("añosActivo", añosActivo);
+        entrenadores.put("telefono", telefono);
+        entrenadores.put("correo", correo);
+        entrenadores.put("contraseña", contraseña);
+        entrenadores.put("foto" , descargarUri.toString());
+
+
+        tablaRef.child(usuario.getUid()).setValue(entrenadores);
     }
 }
