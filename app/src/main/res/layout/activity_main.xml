@@ -40,4 +40,13 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"/>
 
+    <Button
+        android:id="@+id/verSensor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="Acelerometro"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"/>
+
 </LinearLayout>

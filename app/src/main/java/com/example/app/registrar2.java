@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,13 +46,16 @@ public class registrar2 extends AppCompatActivity {
         ultEq.setHint("Ultimo equipo/academia donde jugo");
         nroEq = findViewById(R.id.campo3);
         nroEq.setHint("Cantidad de equipos donde ha jugado");
+        nroEq.setInputType(InputType.TYPE_CLASS_NUMBER);
         ctdPartidos = findViewById(R.id.campo4);
         ctdPartidos.setHint("Cantidad de partidos jugados");
+        ctdPartidos.setInputType(InputType.TYPE_CLASS_NUMBER);
         nroTit = findViewById(R.id.campo5);
         nroTit.setHint("Cantidad de titulos conseguidos");
+        nroTit.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         barra = findViewById(R.id.barra);
-        barra.setProgress(33);
+        barra.setProgress(50);
 
         nombre = getIntent().getStringExtra("nombre");
         edad = getIntent().getStringExtra("edad");
@@ -68,18 +72,22 @@ public class registrar2 extends AppCompatActivity {
                 nroEquipos = nroEq.getText().toString();
                 nroPartidos = ctdPartidos.getText().toString();
                 nroTitulos = nroTit.getText().toString();
-
-                Intent intent = new Intent(getApplicationContext(), registrar3.class);
-                intent.putExtra("nombre", nombre);
-                intent.putExtra("edad", edad);
-                intent.putExtra("altura", altura);
-                intent.putExtra("peso", peso);
-                intent.putExtra("posicion", posicion);
-                intent.putExtra("ultimoEq", ultimoEq);
-                intent.putExtra("nroEquipos", nroEquipos);
-                intent.putExtra("nroPartidos", nroPartidos);
-                intent.putExtra("nroTitulos", nroTitulos);
-                startActivity(intent);
+                if (posicion.equals("") || ultimoEq.equals("") || nroEquipos.equals("") || nroPartidos.equals("") || nroTitulos.equals("")){
+                    Toast.makeText(getApplicationContext(), "Debes rellenar todos los campos!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), registrar3.class);
+                    intent.putExtra("nombre", nombre);
+                    intent.putExtra("edad", edad);
+                    intent.putExtra("altura", altura);
+                    intent.putExtra("peso", peso);
+                    intent.putExtra("telefono", telefono);
+                    intent.putExtra("posicion", posicion);
+                    intent.putExtra("ultimoEq", ultimoEq);
+                    intent.putExtra("nroEquipos", nroEquipos);
+                    intent.putExtra("nroPartidos", nroPartidos);
+                    intent.putExtra("nroTitulos", nroTitulos);
+                    startActivity(intent);
+                }
             }
         });
     }

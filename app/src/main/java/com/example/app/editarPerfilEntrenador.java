@@ -32,8 +32,12 @@ public class editarPerfilEntrenador extends AppCompatActivity {
     String img;
     TextView name;
     TextView team;
+    TextView interes;
+    TextView tel;
     String nombre;
     String equipo;
+    String interesado;
+    String telefono;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,8 @@ public class editarPerfilEntrenador extends AppCompatActivity {
         foto = findViewById(R.id.imagen);
         name = findViewById(R.id.campoNombre);
         team = findViewById(R.id.campoEquipo);
+        interes = findViewById(R.id.campoInteres);
+        tel = findViewById(R.id.campoTelefono);
 
         bd = FirebaseDatabase.getInstance().getReference();
         tablaRef = bd.child("entrenador");
@@ -94,16 +100,17 @@ public class editarPerfilEntrenador extends AppCompatActivity {
 
                     nombre = snapshot.child("nombre").getValue().toString();
                     equipo = snapshot.child("equipoActual").getValue().toString();
+                    telefono = snapshot.child("telefono").getValue().toString();
+                    interesado = snapshot.child("interes1").getValue().toString();
                     img = snapshot.child("foto").getValue().toString();
 
                     name.setText(nombre);
                     team.setText(equipo);
+                    interes.setText(interesado);
+                    tel.setText(telefono);
                     Glide.with(getApplicationContext())
                             .load(img)
-                            .fitCenter()
-                            .centerCrop()
                             .into(foto);
-
                 }
 
             }

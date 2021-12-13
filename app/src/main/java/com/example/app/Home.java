@@ -29,10 +29,12 @@ public class Home extends AppCompatActivity {
     DatabaseReference tablaRef;
     String nombre;
     String edad;
-    String posicion;
-    String altura;
-    String nroEquipos;
+    String equipoActual;
+    String añosActivo;
+    String interes;
     String link;
+    String telefono;
+    String correo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,7 @@ public class Home extends AppCompatActivity {
         });
 
         bd = FirebaseDatabase.getInstance().getReference();
-        tablaRef = bd.child("jugador");
+        tablaRef = bd.child("entrenador");
 
         recyclerView = findViewById(R.id.listaCartasRecycler);
         listarCartas();
@@ -79,16 +81,23 @@ public class Home extends AppCompatActivity {
 
                         nombre = dataSnapshot.child("nombre").getValue().toString();
                         edad = dataSnapshot.child("edad").getValue().toString();
-                        posicion = dataSnapshot.child("posicion").getValue().toString();
-                        altura = dataSnapshot.child("altura").getValue().toString();
-                        nroEquipos = dataSnapshot.child("numeroEquipos").getValue().toString();
+                        equipoActual = dataSnapshot.child("equipoActual").getValue().toString();
+                        añosActivo = dataSnapshot.child("añosActivo").getValue().toString();
+                        telefono = dataSnapshot.child("telefono").getValue().toString();
+                        correo = dataSnapshot.child("correo").getValue().toString();
+                        interes = dataSnapshot.child("interes1").getValue().toString();
                         link = dataSnapshot.child("foto").getValue().toString();
 
-
-                        cartas.add(new listaCartas(nombre, edad, posicion, altura, nroEquipos, link));
+                        cartas.add(new listaCartas(nombre, edad, equipoActual, añosActivo, interes, "e",
+                                link, telefono, correo, "", "", "", ""));
                     }
 
-                    listAdapter Adapter = new listAdapter(cartas, getApplicationContext());
+                    listAdapter Adapter = new listAdapter(cartas, getApplicationContext(), new listAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(listaCartas item) {
+                            verDatos(item);
+                        }
+                    });
                     recyclerView.setHasFixedSize(true);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     recyclerView.setAdapter(Adapter);
@@ -101,5 +110,11 @@ public class Home extends AppCompatActivity {
 
             }
         });
-        }
+    }
+
+    public void verDatos(listaCartas item){
+        Intent intent = new Intent(getApplicationContext(), descripcionEnt.class);
+        intent.putExtra("datos", item);
+        startActivity(intent);
+    }
 }

@@ -38,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
     EditText password;
     Button iniciarSesion;
     Button registrarse;
+    Button sensor;
     DatabaseReference bd;
-    DatabaseReference tablaRef;
+    DatabaseReference tablaRef1;
+    DatabaseReference tablaRef2;
 
     @Override
     protected void onStart() {
@@ -47,8 +49,37 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser usuarioActual = auth.getCurrentUser();
 
         if(usuarioActual != null){
-            Intent intent = new Intent(getApplicationContext(), Home.class);
-            startActivity(intent);
+            tablaRef1.child(usuarioActual.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    if (snapshot.exists()){
+                        Intent intent = new Intent(getApplicationContext(), Home.class);
+                        startActivity(intent);
+                    } else {
+                        tablaRef2.child(usuarioActual.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                if (snapshot.exists()){
+                                    Intent intent2 = new Intent(getApplicationContext(), HomeEntrenador.class);
+                                    startActivity(intent2);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
     }
 
@@ -59,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         bd = FirebaseDatabase.getInstance().getReference();
-        tablaRef = bd.child("entrenador");
+        tablaRef1 = bd.child("jugador");
+        tablaRef2 = bd.child("entrenador");
 
         correoElectronico = findViewById(R.id.correo);
         password = findViewById(R.id.contraseña);
@@ -87,6 +119,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        sensor = findViewById(R.id.verSensor);
+        sensor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), sensor.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void iniciarSesion(String correo, String contraseña){
@@ -94,18 +135,41 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
-                    tablaRef.child(auth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    tablaRef1.child(auth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            email = snapshot.child("correo").getValue().toString();
-                            pass = snapshot.child("contraseña").getValue().toString();
 
-                            if (email.equals(correo) && pass.equals(contraseña)) {
-                                Intent intent = new Intent(getApplicationContext(), HomeEntrenador.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
+                            if(snapshot.exists()){
+                                email = snapshot.child("correo").getValue().toString();
+                                pass = snapshot.child("contraseña").getValue().toString();
+
+                                if (email.equals(correo) && pass.equals(contraseña)) {
+                                    Intent intent = new Intent(getApplicationContext(), Home.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                }
                             } else {
-                                Toast.makeText(getApplicationContext(), "Correo o contraseña incorrecto", Toast.LENGTH_SHORT).show();
+                                tablaRef2.child(auth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                        if(snapshot.exists()){
+                                            email = snapshot.child("correo").getValue().toString();
+                                            pass = snapshot.child("contraseña").getValue().toString();
+
+                                            if (email.equals(correo) && pass.equals(contraseña)) {
+                                                Intent intent = new Intent(getApplicationContext(), HomeEntrenador.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                startActivity(intent);
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
                             }
                         }
 

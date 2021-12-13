@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textSize="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:background="@color/azulito" />
 
@@ -59,7 +59,7 @@
                 android:layout_gravity="center_horizontal"
                 android:textSize="20dp"
                 android:layout_marginTop="20dp"
-                android:text="    Equipo    "
+                android:text="    Equipo actual    "
                 android:textColor="@color/black"
                 android:background="@color/azulito" />
 
@@ -69,9 +69,49 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textSize="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:background="@color/azulito"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:text="    Telefono    "
+                android:textColor="@color/black"
+                android:background="@color/azulito" />
+
+            <TextView
+                android:id="@+id/campoTelefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:background="@color/azulito" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:text="    Interes principal    "
+                android:textColor="@color/black"
+                android:background="@color/azulito" />
+
+            <TextView
+                android:id="@+id/campoInteres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:background="@color/azulito" />
 
             <Button
                 android:id="@+id/editar"
@@ -80,7 +120,7 @@
                 android:backgroundTint="@color/black"
                 android:text="Editar perfil"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="80dp"/>
+                android:layout_marginTop="50dp"/>
 
             <Button
                 android:id="@+id/cerrarSesion"
