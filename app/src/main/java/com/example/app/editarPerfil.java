@@ -92,8 +92,6 @@ public class editarPerfil extends AppCompatActivity {
                     posicion = snapshot.child("posicion").getValue().toString();
                     img = snapshot.child("foto").getValue().toString();
 
-                    Toast.makeText(getApplicationContext(), "IMAGEN " + img, Toast.LENGTH_LONG).show();
-
                     name.setText(nombre);
                     pos.setText(posicion);
                     Glide.with(getApplicationContext())

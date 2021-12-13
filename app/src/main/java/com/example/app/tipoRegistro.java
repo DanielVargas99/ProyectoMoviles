@@ -10,6 +10,7 @@ import android.view.View;
 public class tipoRegistro extends AppCompatActivity {
 
     CardView jugador;
+    CardView entrenador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,11 +18,20 @@ public class tipoRegistro extends AppCompatActivity {
         setContentView(R.layout.activity_tipo_registro);
 
         jugador = findViewById(R.id.registroJugador);
+        entrenador = findViewById(R.id.registroEntrenador);
 
         jugador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), registrar.class);
+                startActivity(intent);
+            }
+        });
+
+        entrenador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), registroEntrenador.class);
                 startActivity(intent);
             }
         });

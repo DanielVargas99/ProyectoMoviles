@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class registrar extends AppCompatActivity {
 
@@ -33,12 +35,16 @@ public class registrar extends AppCompatActivity {
         name.setHint("Nombre");
         Edad = findViewById(R.id.campo2);
         Edad.setHint("Edad");
+        Edad.setInputType(InputType.TYPE_CLASS_NUMBER);
         talla = findViewById(R.id.campo3);
         talla.setHint("Altura");
+        talla.setInputType(InputType.TYPE_CLASS_PHONE);
         Peso = findViewById(R.id.campo4);
-        Peso.setHint("Peso");
+        Peso.setHint("Peso(En KG)");
+        Peso.setInputType(InputType.TYPE_CLASS_PHONE);
         nroCel = findViewById(R.id.campo5);
         nroCel.setHint("Telefono");
+        nroCel.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         siguiente = findViewById(R.id.boton);
         siguiente.setOnClickListener(new View.OnClickListener() {
@@ -49,13 +55,17 @@ public class registrar extends AppCompatActivity {
                 altura = talla.getText().toString();
                 peso = Peso.getText().toString();
                 telefono = nroCel.getText().toString();
-                Intent intent = new Intent(getApplicationContext(), registrar2.class);
-                intent.putExtra("nombre", nombre);
-                intent.putExtra("edad", edad);
-                intent.putExtra("altura", altura);
-                intent.putExtra("peso", peso);
-                intent.putExtra("telefono", telefono);
-                startActivity(intent);
+                if (nombre.equals("") || edad.equals("") || altura.equals("") || peso.equals("") || telefono.equals("")){
+                    Toast.makeText(getApplicationContext(), "Debes rellenar todos los campos!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), registrar2.class);
+                    intent.putExtra("nombre", nombre);
+                    intent.putExtra("edad", edad);
+                    intent.putExtra("altura", altura);
+                    intent.putExtra("peso", peso);
+                    intent.putExtra("telefono", telefono);
+                    startActivity(intent);
+                }
             }
         });
     }

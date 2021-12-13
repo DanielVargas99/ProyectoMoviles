@@ -32,12 +32,6 @@ public class HomeEntrenador extends AppCompatActivity {
     String altura;
     String nroEquipos;
     String link;
-    String peso;
-    String ultimoEquipo;
-    String nroPartidos;
-    String nroTitulos;
-    String correo;
-    String telefono;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,25 +88,13 @@ public class HomeEntrenador extends AppCompatActivity {
                         posicion = dataSnapshot.child("posicion").getValue().toString();
                         altura = dataSnapshot.child("altura").getValue().toString();
                         nroEquipos = dataSnapshot.child("numeroEquipos").getValue().toString();
-                        peso = dataSnapshot.child("peso").getValue().toString();
-                        telefono = dataSnapshot.child("telefono").getValue().toString();
-                        ultimoEquipo = dataSnapshot.child("ultimoEquipo").getValue().toString();
-                        nroPartidos = dataSnapshot.child("numeroPartidos").getValue().toString();
-                        nroTitulos = dataSnapshot.child("numeroTitulos").getValue().toString();
-                        correo = dataSnapshot.child("correo").getValue().toString();
                         link = dataSnapshot.child("foto").getValue().toString();
 
 
-                        cartas.add(new listaCartas(nombre, edad, posicion, altura, nroEquipos, "j",
-                                link, peso, telefono, ultimoEquipo, nroPartidos, nroTitulos, correo));
+                        cartas.add(new listaCartas(nombre, edad, posicion, altura, nroEquipos, link));
                     }
 
-                    listAdapter Adapter = new listAdapter(cartas, getApplicationContext(), new listAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(listaCartas item) {
-                            verDatos(item);
-                        }
-                    });
+                    listAdapter Adapter = new listAdapter(cartas, getApplicationContext());
                     recyclerView.setHasFixedSize(true);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     recyclerView.setAdapter(Adapter);
@@ -125,11 +107,5 @@ public class HomeEntrenador extends AppCompatActivity {
 
             }
         });
-    }
-
-    public void verDatos(listaCartas item){
-        Intent intent = new Intent(getApplicationContext(), descripcionJug.class);
-        intent.putExtra("datos", item);
-        startActivity(intent);
     }
 }

@@ -24,6 +24,7 @@ public class Home extends AppCompatActivity {
 
     RecyclerView recyclerView;
     BottomNavigationView menuJugador;
+    List<listaCartas> cartas;
     DatabaseReference bd;
     DatabaseReference tablaRef;
     String nombre;
@@ -61,6 +62,44 @@ public class Home extends AppCompatActivity {
         bd = FirebaseDatabase.getInstance().getReference();
         tablaRef = bd.child("jugador");
 
+        recyclerView = findViewById(R.id.listaCartasRecycler);
+        listarCartas();
     }
 
+    public void listarCartas(){
+
+        cartas = new ArrayList<>();
+        tablaRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if(snapshot.exists()){
+
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+
+                        nombre = dataSnapshot.child("nombre").getValue().toString();
+                        edad = dataSnapshot.child("edad").getValue().toString();
+                        posicion = dataSnapshot.child("posicion").getValue().toString();
+                        altura = dataSnapshot.child("altura").getValue().toString();
+                        nroEquipos = dataSnapshot.child("numeroEquipos").getValue().toString();
+                        link = dataSnapshot.child("foto").getValue().toString();
+
+
+                        cartas.add(new listaCartas(nombre, edad, posicion, altura, nroEquipos, link));
+                    }
+
+                    listAdapter Adapter = new listAdapter(cartas, getApplicationContext());
+                    recyclerView.setHasFixedSize(true);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    recyclerView.setAdapter(Adapter);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        }
 }

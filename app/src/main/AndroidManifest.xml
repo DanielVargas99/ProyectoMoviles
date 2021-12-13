@@ -13,7 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.APP">
-        <activity android:name=".prueba"></activity>
+        <activity android:name=".registroEntrenador3"></activity>
+        <activity android:name=".editarPerfilEntrenador" />
+        <activity android:name=".recomendados_entrenador" />
+        <activity android:name=".HomeEntrenador" />
+        <activity android:name=".prueba" />
         <activity android:name=".registroEntrenador2" />
         <activity android:name=".registroEntrenador" />
         <activity android:name=".tipoRegistro" />

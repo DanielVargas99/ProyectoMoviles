@@ -1,12 +1,35 @@
 package com.example.app;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class registroEntrenador2 extends AppCompatActivity {
 
@@ -21,23 +44,17 @@ public class registroEntrenador2 extends AppCompatActivity {
     EditText int1;
     EditText int2;
     EditText int3;
-    EditText c1;
-    EditText c2;
     Button siguiente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrar);
+        setContentView(R.layout.activity_registrar2);
 
         int1 = findViewById(R.id.campo1);
         int1.setHint("Posicion de interes 1");
-        c1 = findViewById(R.id.campo2);
-        c1.setVisibility(View.INVISIBLE);
         int2 = findViewById(R.id.campo3);
         int2.setHint("Posicion de interes 2");
-        c2 = findViewById(R.id.campo4);
-        c2.setVisibility(View.INVISIBLE);
         int3 = findViewById(R.id.campo5);
         int3.setHint("Posicion de interes 3");
 

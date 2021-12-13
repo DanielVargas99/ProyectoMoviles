@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     Button iniciarSesion;
     Button registrarse;
     DatabaseReference bd;
-    DatabaseReference tablaRef;
+    DatabaseReference tablaRef1;
+    DatabaseReference tablaRef2;
 
     @Override
     protected void onStart() {
@@ -59,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         bd = FirebaseDatabase.getInstance().getReference();
-        tablaRef = bd.child("jugador");
+        tablaRef1 = bd.child("jugador");
+        tablaRef2 = bd.child("entrenador");
 
         correoElectronico = findViewById(R.id.correo);
         password = findViewById(R.id.contraseña);
@@ -94,18 +96,41 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
-                    tablaRef.child(auth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    tablaRef1.child(auth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            email = snapshot.child("correo").getValue().toString();
-                            pass = snapshot.child("contraseña").getValue().toString();
 
-                            if (email.equals(correo) && pass.equals(contraseña)) {
-                                Intent intent = new Intent(getApplicationContext(), Home.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
+                            if(snapshot.exists()){
+                                email = snapshot.child("correo").getValue().toString();
+                                pass = snapshot.child("contraseña").getValue().toString();
+
+                                if (email.equals(correo) && pass.equals(contraseña)) {
+                                    Intent intent = new Intent(getApplicationContext(), Home.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                }
                             } else {
-                                Toast.makeText(getApplicationContext(), "Correo o contraseña incorrecto", Toast.LENGTH_SHORT).show();
+                                tablaRef2.child(auth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                        if(snapshot.exists()){
+                                            email = snapshot.child("correo").getValue().toString();
+                                            pass = snapshot.child("contraseña").getValue().toString();
+
+                                            if (email.equals(correo) && pass.equals(contraseña)) {
+                                                Intent intent = new Intent(getApplicationContext(), HomeEntrenador.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                startActivity(intent);
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
                             }
                         }
 
