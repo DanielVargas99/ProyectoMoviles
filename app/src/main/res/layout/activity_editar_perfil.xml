@@ -49,29 +49,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textSize="20dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/black"
-                android:background="@color/azulito" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="20dp"
                 android:layout_marginTop="20dp"
-                android:text="    Edad    "
                 android:textColor="@color/black"
                 android:background="@color/azulito" />
-
-            <TextView
-                android:id="@+id/campoEdad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="20dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/black"
-                android:background="@color/azulito"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -89,47 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textSize="20dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/black"
-                android:background="@color/azulito"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="20dp"
                 android:layout_marginTop="20dp"
-                android:text="    Ultimo equipo    "
-                android:textColor="@color/black"
-                android:background="@color/azulito" />
-
-            <TextView
-                android:id="@+id/campoEquipo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="20dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/black"
-                android:background="@color/azulito"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="20dp"
-                android:layout_marginTop="20dp"
-                android:text="    Telefono    "
-                android:textColor="@color/black"
-                android:background="@color/azulito" />
-
-            <TextView
-                android:id="@+id/campoTelefono"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="20dp"
-                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:background="@color/azulito"/>
 
@@ -140,7 +80,7 @@
                 android:backgroundTint="@color/black"
                 android:text="Editar perfil"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"/>
+                android:layout_marginTop="80dp"/>
 
             <Button
                 android:id="@+id/cerrarSesion"

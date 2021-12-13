@@ -1,40 +1,25 @@
 package com.example.app;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-import java.util.HashMap;
-import java.util.Map;
-
 
 public class registrar3 extends AppCompatActivity {
 
-    ImageView fotoJug;
+    TextView informacion;
+    EditText vel;
+    EditText fue;
+    EditText reg;
+    EditText tir;
+    EditText pas;
     String nombre;
     String edad;
     String altura;
@@ -42,43 +27,37 @@ public class registrar3 extends AppCompatActivity {
     String telefono;
     String posicion;
     String ultimoEq;
-    String nroEquipos;
-    String nroPartidos;
     String nroTitulos;
-    String correo;
-    String contraseña;
-    String recontraseña;
-    EditText email;
-    EditText password;
-    EditText repassword;
-    ProgressBar barra;
+    String nroPartidos;
+    String nroEquipos;
+    String velocidad;
+    String fuerza;
+    String regate;
+    String tiro;
+    String pase;
     Button boton;
-    Button foto;
-    FirebaseAuth auth;
-    DatabaseReference databaseReference;
-    DatabaseReference jugadorRef;
-    StorageReference storageReference;
-    StorageReference carpetaFotos;
-    ProgressDialog progressDialog;
-    private static final int galeria = 1;
-    Uri uri;
-    Uri descargarUri;
+    ProgressBar barra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrar2);
+        setContentView(R.layout.activity_registrar);
 
-        auth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        jugadorRef = databaseReference.child("jugador");
-
-        email = findViewById(R.id.campo1);
-        password = findViewById(R.id.campo2);
-        repassword = findViewById(R.id.campo3);
+        informacion = findViewById(R.id.info);
+        informacion.setText("Informacion adicional");
+        vel = findViewById(R.id.campo1);
+        vel.setHint("Velocidad");
+        fue = findViewById(R.id.campo2);
+        fue.setHint("Fuerza");
+        reg = findViewById(R.id.campo3);
+        reg.setHint("Regate");
+        tir = findViewById(R.id.campo4);
+        tir.setHint("Tiro");
+        pas = findViewById(R.id.campo5);
+        pas.setHint("Pase");
 
         barra = findViewById(R.id.barra);
-        barra.setProgress(100);
+        barra.setProgress(66);
 
         nombre = getIntent().getStringExtra("nombre");
         edad = getIntent().getStringExtra("edad");
@@ -91,109 +70,34 @@ public class registrar3 extends AppCompatActivity {
         nroPartidos = getIntent().getStringExtra("nroPartidos");
         nroTitulos = getIntent().getStringExtra("nroTitulos");
 
-        storageReference = FirebaseStorage.getInstance().getReference();
-        fotoJug = findViewById(R.id.cargarFoto);
-
-        foto = findViewById(R.id.subirFoto);
-        foto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, galeria);
-            }
-        });
-
-        boton = findViewById(R.id.botonFin);
+        boton = findViewById(R.id.boton);
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                correo = email.getText().toString();
-                contraseña = password.getText().toString();
-                recontraseña = repassword.getText().toString();
-                if (correo.equals("") || contraseña.equals("") || recontraseña.equals("")){
-                    Toast.makeText(getApplicationContext(), "Debes rellenar todos los campos!", Toast.LENGTH_SHORT).show();
-                }
-                if (contraseña.equals(recontraseña)){
-                    crearInicioSesion(correo, contraseña);
-                    Intent intent = new Intent(getApplicationContext(), Home.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Las contraseñas no coinciden!", Toast.LENGTH_SHORT).show();
-                }
+                velocidad = vel.getText().toString();
+                fuerza = fue.getText().toString();
+                regate = reg.getText().toString();
+                tiro = tir.getText().toString();
+                pase = pas.getText().toString();
+
+                Intent intent = new Intent(getApplicationContext(), registrar4.class);
+                intent.putExtra("nombre", nombre);
+                intent.putExtra("edad", edad);
+                intent.putExtra("altura", altura);
+                intent.putExtra("peso", peso);
+                intent.putExtra("telefono", telefono);
+                intent.putExtra("posicion", posicion);
+                intent.putExtra("ultimoEq", ultimoEq);
+                intent.putExtra("nroEquipos", nroEquipos);
+                intent.putExtra("nroPartidos", nroPartidos);
+                intent.putExtra("nroTitulos", nroTitulos);
+                intent.putExtra("velocidad", velocidad);
+                intent.putExtra("fuerza", fuerza);
+                intent.putExtra("regate", regate);
+                intent.putExtra("tiro", tiro);
+                intent.putExtra("pase", pase);
+                startActivity(intent);
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == galeria && resultCode == RESULT_OK){
-
-            uri = data.getData();
-            fotoJug.setImageURI(uri);
-
-            carpetaFotos = storageReference.child("fotosJugador").child(uri.getLastPathSegment());
-            carpetaFotos.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-
-                    while (!uriTask.isSuccessful());
-
-                    descargarUri = uriTask.getResult();
-                }
-            });
-        }
-    }
-
-    public void crearInicioSesion(String correo, String contraseña){
-        auth.createUserWithEmailAndPassword(correo, contraseña).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), "USUARIO CREADO", Toast.LENGTH_SHORT).show();
-                    FirebaseUser user = auth.getCurrentUser();
-                    iniciarSesion(user, correo, contraseña);
-                } else {
-                    Toast.makeText(getApplicationContext(), "USUARIO NO CREADO", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    public void iniciarSesion(FirebaseUser usuario, String correo, String contraseña){
-        auth.signInWithEmailAndPassword(correo, contraseña).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    registroJugador(jugadorRef, usuario, correo, contraseña);
-                }
-            }
-        });
-    }
-
-    public void registroJugador(DatabaseReference tablaRef, FirebaseUser usuario, String correo, String contraseña){
-
-
-        Map<String, String> jugadores = new HashMap<>();
-
-        jugadores.put("nombre", nombre);
-        jugadores.put("edad", edad);
-        jugadores.put("altura", altura);
-        jugadores.put("peso", peso);
-        jugadores.put("telefono", telefono);
-        jugadores.put("posicion", posicion);
-        jugadores.put("ultimoEquipo", ultimoEq);
-        jugadores.put("numeroEquipos", nroEquipos);
-        jugadores.put("numeroPartidos", nroPartidos);
-        jugadores.put("numeroTitulos", nroTitulos);
-        jugadores.put("correo", correo);
-        jugadores.put("contraseña", contraseña);
-        jugadores.put("foto" , descargarUri.toString());
-
-
-        tablaRef.child(usuario.getUid()).setValue(jugadores);
     }
 }

@@ -28,29 +28,15 @@ public class editarPerfil extends AppCompatActivity {
 
     BottomNavigationView menuJugador;
     Button cerrar;
-    Button editar;
     ImageView foto;
     DatabaseReference bd;
     DatabaseReference tablaRef;
     FirebaseAuth auth;
     String img;
     TextView name;
-    TextView ed;
     TextView pos;
-    TextView ultimoEq;
-    TextView tel;
     String nombre;
-    String edad;
     String posicion;
-    String ultimoEquipo;
-    String telefono;
-    String altura;
-    String peso;
-    String numeroEquipos;
-    String numeroPartidos;
-    String numeroTitulos;
-    String correo;
-    String contraseña;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +47,7 @@ public class editarPerfil extends AppCompatActivity {
         menuJugador.setSelectedItemId(R.id.perfil);
         foto = findViewById(R.id.imagen);
         name = findViewById(R.id.campoNombre);
-        ed = findViewById(R.id.campoEdad);
         pos = findViewById(R.id.campoPosicion);
-        ultimoEq = findViewById(R.id.campoEquipo);
-        tel = findViewById(R.id.campoTelefono);
 
         bd = FirebaseDatabase.getInstance().getReference();
         tablaRef = bd.child("jugador");
@@ -79,56 +62,6 @@ public class editarPerfil extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-            }
-        });
-
-        editar = findViewById(R.id.editar);
-        editar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tablaRef.child(auth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                        if(snapshot.exists()){
-
-                            nombre = snapshot.child("nombre").getValue().toString();
-                            edad = snapshot.child("edad").getValue().toString();
-                            altura = snapshot.child("altura").getValue().toString();;
-                            peso = snapshot.child("peso").getValue().toString();;
-                            numeroEquipos = snapshot.child("numeroEquipos").getValue().toString();;
-                            numeroPartidos = snapshot.child("numeroPartidos").getValue().toString();;
-                            numeroTitulos = snapshot.child("numeroTitulos").getValue().toString();;
-                            correo = snapshot.child("correo").getValue().toString();;
-                            contraseña = snapshot.child("contraseña").getValue().toString();;
-                            posicion = snapshot.child("posicion").getValue().toString();
-                            ultimoEquipo = snapshot.child("ultimoEquipo").getValue().toString();
-                            telefono = snapshot.child("telefono").getValue().toString();
-                            img = snapshot.child("foto").getValue().toString();
-
-                            Intent intent = new Intent(getApplicationContext(), registrar.class);
-                            intent.putExtra("nombre", nombre);
-                            intent.putExtra("edad", edad);
-                            intent.putExtra("altura", altura);
-                            intent.putExtra("peso", peso);
-                            intent.putExtra("telefono", telefono);
-                            intent.putExtra("posicion", posicion);
-                            intent.putExtra("ultimoEquipo", ultimoEquipo);
-                            intent.putExtra("numeroEquipos", numeroEquipos);
-                            intent.putExtra("numeroPartidos", numeroPartidos);
-                            intent.putExtra("numeroTitulos", numeroTitulos);
-                            intent.putExtra("correo", correo);
-                            intent.putExtra("contraseña", contraseña);
-                            intent.putExtra("foto" , img);
-                            startActivity(intent);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
             }
         });
 
@@ -156,26 +89,17 @@ public class editarPerfil extends AppCompatActivity {
                 if(snapshot.exists()){
 
                     nombre = snapshot.child("nombre").getValue().toString();
-                    edad = snapshot.child("edad").getValue().toString();
-                    altura = snapshot.child("altura").getValue().toString();;
-                    peso = snapshot.child("peso").getValue().toString();;
-                    numeroEquipos = snapshot.child("numeroEquipos").getValue().toString();;
-                    numeroPartidos = snapshot.child("numeroPartidos").getValue().toString();;
-                    numeroTitulos = snapshot.child("numeroTitulos").getValue().toString();;
-                    correo = snapshot.child("correo").getValue().toString();;
-                    contraseña = snapshot.child("contraseña").getValue().toString();;
                     posicion = snapshot.child("posicion").getValue().toString();
-                    ultimoEquipo = snapshot.child("ultimoEquipo").getValue().toString();
-                    telefono = snapshot.child("telefono").getValue().toString();
                     img = snapshot.child("foto").getValue().toString();
 
+                    Toast.makeText(getApplicationContext(), "IMAGEN " + img, Toast.LENGTH_LONG).show();
+
                     name.setText(nombre);
-                    ed.setText(edad);
                     pos.setText(posicion);
-                    ultimoEq.setText(ultimoEquipo);
-                    tel.setText(telefono);
                     Glide.with(getApplicationContext())
                             .load(img)
+                            .fitCenter()
+                            .centerCrop()
                             .into(foto);
 
                 }

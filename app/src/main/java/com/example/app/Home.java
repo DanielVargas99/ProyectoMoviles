@@ -24,17 +24,14 @@ public class Home extends AppCompatActivity {
 
     RecyclerView recyclerView;
     BottomNavigationView menuJugador;
-    List<listaCartas> cartas;
     DatabaseReference bd;
     DatabaseReference tablaRef;
     String nombre;
     String edad;
-    String equipoActual;
-    String añosActivo;
-    String interes;
+    String posicion;
+    String altura;
+    String nroEquipos;
     String link;
-    String telefono;
-    String correo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,59 +59,8 @@ public class Home extends AppCompatActivity {
         });
 
         bd = FirebaseDatabase.getInstance().getReference();
-        tablaRef = bd.child("entrenador");
+        tablaRef = bd.child("jugador");
 
-        recyclerView = findViewById(R.id.listaCartasRecycler);
-        listarCartas();
     }
 
-    public void listarCartas(){
-
-        cartas = new ArrayList<>();
-        tablaRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                if(snapshot.exists()){
-
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-
-                        nombre = dataSnapshot.child("nombre").getValue().toString();
-                        edad = dataSnapshot.child("edad").getValue().toString();
-                        equipoActual = dataSnapshot.child("equipoActual").getValue().toString();
-                        añosActivo = dataSnapshot.child("añosActivo").getValue().toString();
-                        telefono = dataSnapshot.child("telefono").getValue().toString();
-                        correo = dataSnapshot.child("correo").getValue().toString();
-                        interes = dataSnapshot.child("interes1").getValue().toString();
-                        link = dataSnapshot.child("foto").getValue().toString();
-
-                        cartas.add(new listaCartas(nombre, edad, equipoActual, añosActivo, interes, "e",
-                                link, telefono, correo, "", "", "", ""));
-                    }
-
-                    listAdapter Adapter = new listAdapter(cartas, getApplicationContext(), new listAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(listaCartas item) {
-                            verDatos(item);
-                        }
-                    });
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    recyclerView.setAdapter(Adapter);
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    public void verDatos(listaCartas item){
-        Intent intent = new Intent(getApplicationContext(), descripcionEnt.class);
-        intent.putExtra("datos", item);
-        startActivity(intent);
-    }
 }
